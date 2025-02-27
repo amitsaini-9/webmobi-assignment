@@ -1,12 +1,9 @@
 "use client";
-// src/components/forms/CandidateForm.tsx
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import Navigation from "../Navigation";
 
-// Define the form validation schema
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Invalid email address"),
@@ -59,8 +56,7 @@ export default function CandidateForm() {
         formData.append("resume", data.resume[0]);
       }
 
-      console.log("Submitting form data..."); // Debug log
-
+      console.log("Submitting form data...");
       const response = await fetch("/api/candidates", {
         method: "POST",
         body: formData,
@@ -69,12 +65,11 @@ export default function CandidateForm() {
         },
       });
 
-      console.log("Response status:", response.status); // Debug log
+      console.log("Response status:", response.status);
       console.log(
         "Response headers:",
         Object.fromEntries(response.headers.entries())
-      ); // Debug log
-
+      );
       if (!response.ok) {
         const errorText = await response.text();
         console.error("Error response:", errorText);
@@ -87,7 +82,7 @@ export default function CandidateForm() {
       }
 
       const result = await response.json();
-      console.log("Server response:", result); // Debug log
+      console.log("Server response:", result);
 
       if (result.success) {
         setSubmitSuccess(true);

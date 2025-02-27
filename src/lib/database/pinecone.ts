@@ -1,4 +1,3 @@
-// src/lib/database/pinecone.ts
 import { Pinecone } from '@pinecone-database/pinecone';
 
 if (!process.env.PINECONE_API_KEY) {

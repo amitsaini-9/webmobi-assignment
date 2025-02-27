@@ -1,4 +1,3 @@
-// src/lib/utils/matchAnalysis.ts
 import { generateGeminiResponse } from './gemini';
 import { RecordMetadata } from '@pinecone-database/pinecone';
 
@@ -33,7 +32,6 @@ export async function analyzeMatch(
       };
     }
 
-    // Extract and normalize skills
     const jobSkills = (jobData.skills as string || '').split(',')
       .map(s => s.trim().toLowerCase())
       .filter(Boolean);
@@ -42,7 +40,6 @@ export async function analyzeMatch(
       .map(s => s.trim().toLowerCase())
       .filter(Boolean);
 
-    // Calculate skill match score
     const skillsMatch = jobSkills.filter(skill =>
       candidateSkills.includes(skill)
     );
@@ -53,13 +50,11 @@ export async function analyzeMatch(
 
     const skillsScore = jobSkills.length > 0 ? skillsMatch.length / jobSkills.length : 0;
 
-    // Calculate experience score (simple implementation)
     const experienceScore = calculateExperienceScore(
       jobData.experience as string || '',
       candidateData.experience as string || ''
     );
 
-    // Generate analysis
     const prompt = `
       Analyze this job-candidate match:
 
@@ -127,11 +122,9 @@ function calculateExperienceScore(requiredExp: string, candidateExp: string): nu
     return 0;
   }
 
-  // Extract years (simple implementation)
   const requiredYears = extractYears(requiredExp);
   const candidateYears = extractYears(candidateExp);
 
-  if (requiredYears === 0) return 0.5; // If no specific years required
   if (candidateYears >= requiredYears) return 1;
   return candidateYears / requiredYears;
 }

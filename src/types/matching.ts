@@ -1,4 +1,3 @@
-// src/types/matching.ts
 export interface MatchDetails {
   skillsMatch: string[];
   missingSkills: string[];

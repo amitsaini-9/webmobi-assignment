@@ -1,4 +1,3 @@
-// src/app/api/candidates/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { generateEmbeddings, analyzeCandidate } from '@/lib/utils/embeddings';
 import { upsertCandidate, getCandidates } from '@/lib/database/pineconeUtils';

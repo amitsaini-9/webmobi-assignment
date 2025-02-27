@@ -1,10 +1,8 @@
-// src/app/api/jobs/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import { generateEmbeddings } from '@/lib/utils/embeddings';
 import { pineconeIndex } from '@/lib/database/pinecone';
 import { RecordMetadata } from '@pinecone-database/pinecone';
 
-// Define interfaces for type safety
 interface JobData {
   title: string;
   company: string;
@@ -29,7 +27,6 @@ export async function POST(request: NextRequest) {
   try {
     const jobData: JobData = await request.json();
 
-    // Generate embeddings for job description
     const textForEmbedding = `
       Title: ${jobData.title}
       Company: ${jobData.company}
@@ -41,7 +38,6 @@ export async function POST(request: NextRequest) {
 
     const embeddings = await generateEmbeddings(textForEmbedding);
 
-    // Store in Pinecone
     const jobId = `job_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
 
     const metadata: JobMetadata = {
@@ -81,15 +77,13 @@ export async function POST(request: NextRequest) {
 
 export async function GET() {
   try {
-    // Query Pinecone for all job listings
     const queryResponse = await pineconeIndex.query({
-      vector: Array(1536).fill(0), // Query vector (returns all jobs)
+      vector: Array(1536).fill(0),
       topK: 1000,
       includeMetadata: true,
       filter: { type: { $eq: 'job' } }
     });
 
-    // Transform and validate the response
     const jobs = queryResponse.matches?.map(match => {
       const metadata = match.metadata as JobMetadata;
 
@@ -109,7 +103,6 @@ export async function GET() {
       };
     }) || [];
 
-    // Sort by creation date
     const sortedJobs = [...jobs].sort((a, b) => {
       return new Date(b.metadata.createdAt).getTime() - new Date(a.metadata.createdAt).getTime();
     });

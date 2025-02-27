@@ -1,4 +1,3 @@
-// src/lib/database/pineconeUtils.ts
 import { pineconeIndex } from './pinecone';
 import { RecordMetadata } from '@pinecone-database/pinecone';
 import { Candidate, CandidateMetadata } from '@/types/candidate';

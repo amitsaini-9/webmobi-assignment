@@ -1,4 +1,3 @@
-// src/app/dashboard/error.tsx
 "use client";
 
 export default function Error({

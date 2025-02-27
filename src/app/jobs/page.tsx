@@ -1,4 +1,3 @@
-// src/app/jobs/page.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -45,7 +44,6 @@ export default function JobsPage() {
         throw new Error(data.error || "Failed to fetch jobs");
       }
 
-      // Ensure proper typing and handle potential missing data
       const typedJobs: Job[] = data.jobs.map((job: any) => ({
         id: job.id,
         score: job.score || 0,
@@ -61,11 +59,10 @@ export default function JobsPage() {
         },
       }));
 
-      // Sort jobs by creation date
       const sortedJobs = [...typedJobs].sort((a, b) => {
         const dateA = new Date(a.metadata.createdAt).getTime();
         const dateB = new Date(b.metadata.createdAt).getTime();
-        return dateB - dateA; // Sort newest first
+        return dateB - dateA;
       });
 
       setJobs(sortedJobs);

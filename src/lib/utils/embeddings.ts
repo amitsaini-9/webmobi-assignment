@@ -1,8 +1,6 @@
-// src/lib/utils/embeddings.ts
-import { NextResponse } from 'next/server';
 
 const EMBEDDING_DIMENSION = 1536;
-const MAX_ANALYSIS_LENGTH = 500; // Add maximum length constant
+const MAX_ANALYSIS_LENGTH = 500;
 const GEMINI_API_ENDPOINT = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 
 export async function generateEmbeddings(text: string): Promise<number[]> {
@@ -44,17 +42,14 @@ export async function generateEmbeddings(text: string): Promise<number[]> {
     const result = await response.json();
     const analysis = result.candidates[0].content.parts[0].text;
 
-    // Convert analysis to vector
     const vector = new Array(EMBEDDING_DIMENSION).fill(0);
     const textEncoder = new TextEncoder();
     const encoded = textEncoder.encode(analysis);
 
-    // Fill vector with normalized values
     for (let i = 0; i < encoded.length && i < EMBEDDING_DIMENSION; i++) {
       vector[i] = encoded[i] / 255;
     }
 
-    // Fill remaining positions with deterministic values
     let hash = 0;
     for (let i = 0; i < text.length; i++) {
       hash = ((hash << 5) - hash) + text.charCodeAt(i);

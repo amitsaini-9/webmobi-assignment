@@ -1,4 +1,3 @@
-// src/types/job.ts
 export interface JobDescription {
   id: string;
   title: string;

@@ -1,9 +1,8 @@
-// src/components/JobMatcher.tsx
 "use client";
 
-import { useEffect, useState } from "react";
-import { JobDescription } from "@/types/job";
 import { Candidate } from "@/types/candidate";
+import { JobDescription } from "@/types/job";
+import { useEffect, useState } from "react";
 
 interface MatchResult {
   candidate: Candidate;
@@ -23,7 +22,6 @@ export default function JobMatcher() {
   const [error, setError] = useState<string | null>(null);
   const [jobs, setJobs] = useState<JobDescription[]>([]);
 
-  // Fetch jobs when component mounts
   useEffect(() => {
     fetchJobs();
   }, []);
@@ -103,7 +101,7 @@ export default function JobMatcher() {
       {matchResults.length > 0 && (
         <div className="space-y-6">
           <h3 className="text-lg font-semibold">Matching Candidates</h3>
-          {matchResults.map((result, index) => (
+          {matchResults.map((result) => (
             <div
               key={result.candidate.id}
               className="border rounded-lg p-4 shadow-sm bg-white"

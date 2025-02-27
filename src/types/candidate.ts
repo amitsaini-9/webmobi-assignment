@@ -1,5 +1,3 @@
-// src/types/candidate.ts
-// First, create a types file to share interfaces across components
 import { RecordMetadata } from '@pinecone-database/pinecone';
 
 export interface CandidateMetadata extends RecordMetadata {

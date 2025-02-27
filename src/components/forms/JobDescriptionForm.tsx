@@ -1,4 +1,3 @@
-// src/components/forms/JobDescriptionForm.tsx
 "use client";
 
 import { useState } from "react";
@@ -63,7 +62,6 @@ export default function JobDescriptionForm({
 
       setSubmitSuccess(true);
       reset();
-      // Call onSuccess callback if provided
       if (onSuccess) {
         onSuccess();
       }

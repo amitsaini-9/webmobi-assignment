@@ -1,4 +1,3 @@
-// src/app/jobs/[jobId]/match/page.tsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -42,6 +41,7 @@ interface Job {
     description: string;
     skills: string;
     experience: string;
+    createdAt: string;
   };
 }
 

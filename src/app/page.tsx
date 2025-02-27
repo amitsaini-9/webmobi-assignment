@@ -1,4 +1,3 @@
-// src/app/page.tsx
 import CandidateForm from "@/components/forms/CandidateForm";
 
 export default function Home() {

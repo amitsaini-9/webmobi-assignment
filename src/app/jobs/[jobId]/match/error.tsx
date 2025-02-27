@@ -1,4 +1,3 @@
-// src/app/jobs/[jobId]/match/error.tsx
 "use client";
 
 export default function Error({

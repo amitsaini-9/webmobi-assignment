@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-// src/components/Navigation.tsx
 export default function Navigation() {
   return (
     <nav className="bg-white shadow text-black">

@@ -5,7 +5,7 @@ export async function parsePDF(buffer: Buffer): Promise<string> {
     const data = await pdfParse(buffer);
     return data.text;
   } catch (error) {
-    console.error('Error parsing PDF:', error);
+    console.error('Error parsing PDF :', error);
     throw new Error('Failed to parse PDF');
   }
 }
