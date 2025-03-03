@@ -1,19 +1,8 @@
 "use client";
 
-import { Candidate } from "@/types/candidate";
 import { JobDescription } from "@/types/job";
+import { MatchResult } from "@/types/matching";
 import { useEffect, useState } from "react";
-
-interface MatchResult {
-  candidate: Candidate;
-  score: number;
-  matchDetails: {
-    skillsMatch: string[];
-    missingSkills: string[];
-    experienceMatch: string;
-    overallFit: string;
-  };
-}
 
 export default function JobMatcher() {
   const [selectedJob, setSelectedJob] = useState<string>("");

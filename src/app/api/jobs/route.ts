@@ -1,27 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateEmbeddings } from '@/lib/utils/embeddings';
 import { pineconeIndex } from '@/lib/database/pinecone';
-import { RecordMetadata } from '@pinecone-database/pinecone';
-
-interface JobData {
-  title: string;
-  company: string;
-  description: string;
-  requirements: string[];
-  skills: string[];
-  experience: string;
-}
-
-interface JobMetadata extends RecordMetadata {
-  type: 'job';
-  title: string;
-  company: string;
-  description: string;
-  requirements: string;
-  skills: string;
-  experience: string;
-  createdAt: string;
-}
+import { JobData, JobMetadata } from '@/types/job';
 
 export async function POST(request: NextRequest) {
   try {

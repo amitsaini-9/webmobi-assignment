@@ -1,49 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
+import { Job } from "@/types/job";
+import { Match } from "@/types/matching";
 import Link from "next/link";
-
-interface MatchDetails {
-  skillsMatch: string[];
-  missingSkills: string[];
-  experienceMatch: string;
-  overallFit: string;
-  scores: {
-    skillsScore: number;
-    experienceScore: number;
-    overallScore: number;
-  };
-}
-
-interface Candidate {
-  id: string;
-  metadata: {
-    name: string;
-    email: string;
-    skills: string;
-    experience: string;
-    education: string;
-  };
-}
-
-interface Match {
-  candidate: Candidate;
-  score: number;
-  matchDetails: MatchDetails;
-}
-
-interface Job {
-  id: string;
-  metadata: {
-    title: string;
-    company: string;
-    description: string;
-    skills: string;
-    experience: string;
-    createdAt: string;
-  };
-}
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function JobMatchPage() {
   const params = useParams();

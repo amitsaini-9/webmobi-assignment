@@ -1,17 +1,7 @@
+import { MatchAnalysis } from '@/types/matching';
 import { generateGeminiResponse } from './gemini';
 import { RecordMetadata } from '@pinecone-database/pinecone';
 
-interface MatchAnalysis {
-  skillsMatch: string[];
-  missingSkills: string[];
-  experienceMatch: string;
-  overallFit: string;
-  scores: {
-    skillsScore: number;
-    experienceScore: number;
-    overallScore: number;
-  };
-}
 
 export async function analyzeMatch(
   jobData: RecordMetadata | undefined,

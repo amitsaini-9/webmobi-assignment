@@ -4,15 +4,13 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-interface JobDescriptionFormProps {
-  onSuccess?: () => void;
-}
+import { JobDescriptionFormProps } from "@/types/job";
 
 const jobSchema = z.object({
   title: z.string().min(2, "Title must be at least 2 characters"),
   company: z.string().min(2, "Company name must be at least 2 characters"),
   description: z.string().min(50, "Please provide a detailed job description"),
-  requirements: z.string().min(20, "Please list the job requirements"),
+  requirements: z.string().min(10, "Please list the job requirements"),
   skills: z.string().min(2, "Please enter required skills"),
   experience: z.string().min(2, "Please specify required experience"),
 });
@@ -134,6 +132,7 @@ export default function JobDescriptionForm({
           {...register("description")}
           rows={6}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+          placeholder="At least 50 characters"
         />
         {errors.description && (
           <p className="mt-1 text-sm text-red-600">

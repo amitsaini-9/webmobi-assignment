@@ -1,26 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
 import JobDescriptionForm from "@/components/forms/JobDescriptionForm";
-import { RecordMetadata } from "@pinecone-database/pinecone";
+import { Job } from "@/types/job";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
-interface JobMetadata extends RecordMetadata {
-  title: string;
-  company: string;
-  description: string;
-  requirements: string;
-  skills: string;
-  experience: string;
-  createdAt: string;
-  type: string;
-}
-
-interface Job {
-  id: string;
-  metadata: JobMetadata;
-  score: number;
-}
 export default function JobsPage() {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);

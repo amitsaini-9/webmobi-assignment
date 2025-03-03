@@ -7,14 +7,14 @@ export async function GET(
   { params }: { params: { jobId: string } }
 ): Promise<NextResponse> {
   try {
-    if (!params?.jobId) {
+    const { jobId } = await params
+    if (!jobId) {
       return NextResponse.json(
         { success: false, error: "Job ID is required" },
         { status: 400 }
       );
     }
 
-    const jobId = params.jobId;
     console.log("Fetching job:", jobId);
 
     let jobVector;

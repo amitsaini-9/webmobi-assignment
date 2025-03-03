@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
     };
 
     console.log('Generating embeddings...');
-    const embeddings = await generateEmbeddings(JSON.stringify(candidateData));
+    const embeddings =  await generateEmbeddings(JSON.stringify(candidateData));
     console.log('Embeddings generated successfully');
 
     console.log('Analyzing candidate...');
